@@ -24,5 +24,6 @@
     <import resource="database-context.xml"/>
 
     <bean id="PersonaServices" class="ar.com.trimix.personasback.services.PersonaServices" />
+    <bean id="PersonaController" class="ar.com.trimix.personasback.controllers.PersonaController" />
 
 </beans>

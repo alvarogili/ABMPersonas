@@ -137,7 +137,7 @@ public class PersonaServicesTest {
     public void editarPersona() {
         String FRANCO = "Franco";
         alvaro.setPerNombre(FRANCO);
-        alvaro = personaServices.editarPersona(alvaro);
+        alvaro = personaServices.editarPersona(alvaro.getPerId(), alvaro);
         assertEquals(FRANCO, alvaro.getPerNombre());
     }
 

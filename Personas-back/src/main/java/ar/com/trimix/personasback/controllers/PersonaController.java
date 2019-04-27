@@ -1,4 +1,4 @@
-package ar.com.trimix.personasback.Controllers;
+package ar.com.trimix.personasback.controllers;
 
 import ar.com.trimix.personasback.entities.Persona;
 import ar.com.trimix.personasback.entities.Personas;
@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +20,13 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * Date: 26/04/19
  */
 @Controller
-@RequestMapping(value = "/personas", produces = {APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/api", produces = {APPLICATION_JSON_VALUE})
 public class PersonaController {
 
     @Autowired
     private PersonaServices personaServices;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET,
+    @RequestMapping(value = "", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Personas> obtenerPersonas(
             @RequestParam(value = "numPag", required = false, defaultValue="0") Integer numPag,
@@ -44,4 +42,28 @@ public class PersonaController {
         return new ResponseEntity<Personas>(new Personas(listaPersonas), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Persona> agregarPersona(@RequestBody Persona persona){
+        Persona personaGuardada = personaServices.agregarPersona(persona);
+        return new ResponseEntity<Persona>(persona, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Persona> editarPersona(@PathVariable Long id, @RequestBody Persona persona){
+        Persona personaGuardada = personaServices.editarPersona(id, persona);
+        return new ResponseEntity<Persona>(persona, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity borrarPersona(@PathVariable Long id){
+        personaServices.eliminarPersona(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

@@ -53,9 +53,10 @@ public class PersonaServices {
         return dato != null && !dato.isEmpty();
     }
 
-    public Persona editarPersona(Persona persona){
-        Optional<Persona> findResult = personaRepository.findById(persona.getPerId());
+    public Persona editarPersona(Long id, Persona persona){
+        Optional<Persona> findResult = personaRepository.findById(id);
         Persona personaEnBD = findResult.orElseThrow(() -> new IllegalArgumentException(String.format(ACTUALIZACION_FALLIDA, persona.getPerNombre() + " " + persona.getPerApellido())));
+        persona.setPerId(personaEnBD.getPerId());
         personaEnBD.actualizarDatos(persona);
         return personaRepository.save(personaEnBD);
     }

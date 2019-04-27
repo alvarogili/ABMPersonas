@@ -1,6 +1,7 @@
 package ar.com.trimix.personasback.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ import javax.persistence.*;
  * Date: 26/04/19
  */
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Persona {
 
     @Id
