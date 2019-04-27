@@ -69,6 +69,68 @@ public class PersonaServicesTest {
         List<Persona> personas = personaList.getContent();
         assertEquals(1L,personas.size());
         assertEquals("Alvaro",personas.get(0).getPerNombre());
+
+        personaList = personaServices.obtenerPersonas(1,1,null, null);
+        personas = personaList.getContent();
+        assertEquals(1L,personas.size());
+        assertEquals("Pepe",personas.get(0).getPerNombre());
+    }
+
+    @Test
+    public void obtener2PersonasPorNombreSinCaseSensitive() {
+
+        alvaro = new Persona(
+                "Gili",
+                new Date(1984, 07, 07),
+                "alVarO",
+                29494566,
+                TipoDocumento.DNI);
+        alvaro = personaServices.agregarPersona(alvaro);
+
+        Page<Persona> personaList = personaServices.obtenerPersonas(0,10,"alvaro", null);
+        List<Persona> personas = personaList.getContent();
+        assertEquals(2L,personas.size());
+        assertEquals("Alvaro",personas.get(0).getPerNombre());
+        assertEquals("alVarO",personas.get(1).getPerNombre());
+
+    }
+
+    @Test
+    public void obtener2PersonasPorTipoDoc() {
+
+        alvaro = new Persona(
+                "Gili",
+                new Date(1984, 07, 07),
+                "alVarO",
+                29494566,
+                TipoDocumento.DNI);
+        alvaro = personaServices.agregarPersona(alvaro);
+
+        Page<Persona> personaList = personaServices.obtenerPersonas(0,10,null, "dni");
+        List<Persona> personas = personaList.getContent();
+        assertEquals(2L,personas.size());
+        assertEquals("Alvaro",personas.get(0).getPerNombre());
+        assertEquals("alVarO",personas.get(1).getPerNombre());
+
+    }
+
+    @Test
+    public void obtener1PersonaPorNombreYPorTipoDoc() {
+
+        alvaro = new Persona(
+                "Gili",
+                new Date(1984, 07, 07),
+                "alVarO",
+                29490000,
+                TipoDocumento.CEDULA);
+        alvaro = personaServices.agregarPersona(alvaro);
+
+        Page<Persona> personaList = personaServices.obtenerPersonas(0,10,"alvaro", "dni");
+        List<Persona> personas = personaList.getContent();
+        assertEquals(1L,personas.size());
+        assertEquals("Alvaro",personas.get(0).getPerNombre());
+        assertEquals(new Long(29494566),personas.get(0).getPerNumeroDocumento());
+        assertEquals(TipoDocumento.DNI,personas.get(0).getPerTipoDocumento());
     }
 
     @Test
