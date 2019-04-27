@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -64,9 +65,10 @@ public class PersonaServicesTest {
 
     @Test
     public void obtener1PersonaPorPagina() {
-        Stream<Persona> personaList = personaServices.obtenerPersonas(0,1,null, null).get();
-        assertEquals(1L,personaList.count());
-        assertEquals("Alvaro",personaList.toArray()[0]);
+        Page<Persona> personaList = personaServices.obtenerPersonas(0,1,null, null);
+        List<Persona> personas = personaList.getContent();
+        assertEquals(1L,personas.size());
+        assertEquals("Alvaro",personas.get(0).getPerNombre());
     }
 
     @Test

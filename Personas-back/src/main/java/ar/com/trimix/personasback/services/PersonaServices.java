@@ -42,8 +42,7 @@ public class PersonaServices {
             persona.setPerTipoDocumento(TipoDocumento.valueOf(perTipoDocumento.toUpperCase()));
 
         ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("perNombre", ExampleMatcher.GenericPropertyMatcher
-                        .of(ExampleMatcher.StringMatcher.CONTAINING).ignoreCase())
+                .withMatcher("perNombre", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
                 .withIgnoreNullValues();
 
         Page<Persona> pagePersona = personaRepository.findAll(Example.of(persona, matcher), PageRequest.of(numPag, tamPag));

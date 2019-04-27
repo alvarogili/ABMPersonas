@@ -1,6 +1,7 @@
 package ar.com.trimix.personasback.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    private long perId;
+    private Long perId;
 
     @Basic(optional = false)
     private String perApellido;
@@ -30,7 +31,7 @@ public class Persona {
     private String perNombre;
 
     @Basic(optional = false)
-    private long perNumeroDocumento;
+    private Long perNumeroDocumento;
 
     @Basic(optional = false)
     @Enumerated(EnumType.STRING)
@@ -59,18 +60,26 @@ public class Persona {
         this.perTipoDocumento = perTipoDocumento;
     }
 
-    public long getPerId() {
+    @JsonProperty("perId")
+    public Long getPerId() {
         return perId;
     }
 
+    public void setPerId(Long perId) {
+        this.perId = perId;
+    }
+
+    @JsonProperty("perApellido")
     public String getPerApellido() {
         return perApellido;
     }
 
+    @JsonProperty("perApellido")
     public void setPerApellido(String perApellido) {
         this.perApellido = perApellido;
     }
 
+    @JsonProperty("perFechaNacimiento")
     public Date getPerFechaNacimiento() {
         return perFechaNacimiento;
     }
@@ -79,6 +88,7 @@ public class Persona {
         this.perFechaNacimiento = perFechaNacimiento;
     }
 
+    @JsonProperty("perNombre")
     public String getPerNombre() {
         return perNombre;
     }
@@ -87,14 +97,16 @@ public class Persona {
         this.perNombre = perNombre;
     }
 
-    public long getPerNumeroDocumento() {
+    @JsonProperty("perNumeroDocumento")
+    public Long getPerNumeroDocumento() {
         return perNumeroDocumento;
     }
 
-    public void setPerNumeroDocumento(long perNumeroDocumento) {
+    public void setPerNumeroDocumento(Long perNumeroDocumento) {
         this.perNumeroDocumento = perNumeroDocumento;
     }
 
+    @JsonProperty("perTipoDocumento")
     public TipoDocumento getPerTipoDocumento() {
         return perTipoDocumento;
     }
