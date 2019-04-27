@@ -10,12 +10,22 @@
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context-5.1.xsd">
 
+    <context:annotation-config />
     <context:component-scan base-package="ar.com.trimix.personasback.entities"/>
 
-   
-    <mvc:annotation-driven/>
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:config.properties</value>
+                <value>file:${PERSONAS_APP_HOME}/config.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="false"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+    </bean>
 
-    <!-- Serve static content-->
-    <mvc:default-servlet-handler/>
+    <import resource="database-context.xml"/>
+
+    <bean id="PersonaServices" class="ar.com.trimix.personasback.services.PersonaServices" />
 
 </beans>

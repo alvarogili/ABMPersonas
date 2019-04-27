@@ -1,8 +1,13 @@
 package ar.com.trimix.personasback.services;
 
 import ar.com.trimix.personasback.entities.Persona;
+import ar.com.trimix.personasback.entities.TipoDocumento;
 import ar.com.trimix.personasback.repositories.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -26,8 +31,27 @@ public class PersonaServices {
         return personaGuardada;
     }
 
-    public Iterable<Persona> obtenerPersonas(){
-        return personaRepository.findAll();
+    public Page<Persona> obtenerPersonas(Integer numPag,
+                                         Integer tamPag,
+                                         String perNombre,
+                                         String perTipoDocumento){
+        Persona persona = new Persona();
+        if(isValid(perNombre))
+            persona.setPerNombre(perNombre);
+        if(isValid(perTipoDocumento))
+            persona.setPerTipoDocumento(TipoDocumento.valueOf(perTipoDocumento.toUpperCase()));
+
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("perNombre", ExampleMatcher.GenericPropertyMatcher
+                        .of(ExampleMatcher.StringMatcher.CONTAINING).ignoreCase())
+                .withIgnoreNullValues();
+
+        Page<Persona> pagePersona = personaRepository.findAll(Example.of(persona, matcher), PageRequest.of(numPag, tamPag));
+        return pagePersona;
+    }
+
+    private boolean isValid(String dato) {
+        return dato != null && !dato.isEmpty();
     }
 
     public Persona editarPersona(Persona persona){

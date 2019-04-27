@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +30,13 @@ public class PersonaController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Personas> obtenerPersonas(){
+    public ResponseEntity<Personas> obtenerPersonas(
+            @RequestParam(value = "numPag", required = false, defaultValue="0") Integer numPag,
+            @RequestParam(value = "tamPag", required = false, defaultValue="20") Integer tamPag,
+            @RequestParam(value = "perNombre", required = false) String perNombre,
+            @RequestParam(value = "perTipoDocumento", required = false) String perTipoDocumento){
 
-        Iterable<Persona> personasInBD = personaServices.obtenerPersonas();
+        Iterable<Persona> personasInBD = personaServices.obtenerPersonas(numPag, tamPag, perNombre, perTipoDocumento);
 
         List<Persona> listaPersonas = new ArrayList<>();
         personasInBD.forEach(p -> listaPersonas.add(p));
@@ -39,6 +44,4 @@ public class PersonaController {
         return new ResponseEntity<Personas>(new Personas(listaPersonas), HttpStatus.OK);
     }
 
-
-    public
 }

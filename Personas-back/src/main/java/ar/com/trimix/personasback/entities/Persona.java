@@ -37,6 +37,13 @@ public class Persona {
     private TipoDocumento perTipoDocumento;
 
     /**
+     * Constructor por defecto
+     */
+    public Persona(){
+
+    }
+
+    /**
      * Constructor de persona
      * @param perApellido Apellido
      * @param perFechaNacimiento Fecha de nacimiento
