@@ -56,3 +56,7 @@ o
 docker run -d -p 8081:8080 personas
 ```
 La diferencia entre el primero y el segundo es que, el primero ejcuta el contenedor y queda bloqueado logueando las acciones de tomcat, cuando se ejecuta `Ctrl+C` el contenedor se detiene y el segundo, ejeucta el contenedor en moo desatendido
+
+## Archivo  ABMPersonas.postman_collection.json
+
+Este archivo es un export de una colección de Postman(https://www.getpostman.com/), que permite ejecutar las acciones requeridas sobre la API.
