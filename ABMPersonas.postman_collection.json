@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "cbef1b92-47e5-49d0-9e00-0965873585dd",
+		"name": "ABMPersonas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dni\":\"1\",\"name\":\"John\",\"surname\":\"Nash\",\"age\":40}"
+				},
+				"url": {
+					"raw": "http://192.168.7.214:8080/personas/api",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"7",
+						"214"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"api"
+					]
+				},
+				"description": "retorna todos los elementos"
+			},
+			"response": []
+		},
+		{
+			"name": "addPersona",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"perApellido\": \"Argento\",\n\t\"perFechaNacimiento\": \"27/04/1975\",\n\t\"perNombre\": \"Pepe\",\n\t\"perNumeroDocumento\": 15321012,\n\t\"perTipoDocumento\": \"PASAPORTE\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.7.214:8080/personas/api",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"7",
+						"214"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://192.168.7.214:8080/personas/api/1",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"7",
+						"214"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"api",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"perApellido\": \"Gili\",\n    \"perFechaNacimiento\": \"07/08/1982\",\n    \"perNombre\": \"Alvaro\",\n    \"perNumeroDocumento\": 29494566,\n    \"perTipoDocumento\": \"DNI\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.7.214:8080/personas/api/23",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"7",
+						"214"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"api",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pueba paginación",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dni\":\"1\",\"name\":\"John\",\"surname\":\"Nash\",\"age\":40}"
+				},
+				"url": {
+					"raw": "http://192.168.7.214:8080/personas/api?numPag=1&tamPag=1",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"7",
+						"214"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"api"
+					],
+					"query": [
+						{
+							"key": "numPag",
+							"value": "1"
+						},
+						{
+							"key": "tamPag",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prueba get by perNombre",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dni\":\"1\",\"name\":\"John\",\"surname\":\"Nash\",\"age\":40}"
+				},
+				"url": {
+					"raw": "http://192.168.7.214:8080/personas/api?perNombre=alvaro",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"7",
+						"214"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"api"
+					],
+					"query": [
+						{
+							"key": "perNombre",
+							"value": "alvaro"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prueba get by tipo doc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dni\":\"1\",\"name\":\"John\",\"surname\":\"Nash\",\"age\":40}"
+				},
+				"url": {
+					"raw": "http://192.168.7.214:8080/personas/api?perTipoDocumento=dni",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"7",
+						"214"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"api"
+					],
+					"query": [
+						{
+							"key": "perTipoDocumento",
+							"value": "dni"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
