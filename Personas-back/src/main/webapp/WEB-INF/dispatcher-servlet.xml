@@ -22,7 +22,7 @@
         <property name="locations">
             <list>
                 <value>classpath:config.properties</value>
-                <value>file:${PERSONAS_APP_HOME}/config.properties</value>
+                <value>file:/opt/ABMPersonas/config.properties</value>
             </list>
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="false"/>

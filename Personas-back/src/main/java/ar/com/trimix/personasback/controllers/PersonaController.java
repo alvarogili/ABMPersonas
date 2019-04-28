@@ -1,7 +1,6 @@
 package ar.com.trimix.personasback.controllers;
 
 import ar.com.trimix.personasback.entities.Persona;
-import ar.com.trimix.personasback.entities.Personas;
 import ar.com.trimix.personasback.services.PersonaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +27,7 @@ public class PersonaController {
 
     @RequestMapping(value = "", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Personas> obtenerPersonas(
+    public ResponseEntity<List<Persona>> obtenerPersonas(
             @RequestParam(value = "numPag", required = false, defaultValue="0") Integer numPag,
             @RequestParam(value = "tamPag", required = false, defaultValue="20") Integer tamPag,
             @RequestParam(value = "perNombre", required = false) String perNombre,
@@ -39,7 +38,7 @@ public class PersonaController {
         List<Persona> listaPersonas = new ArrayList<>();
         personasInBD.forEach(p -> listaPersonas.add(p));
 
-        return new ResponseEntity<Personas>(new Personas(listaPersonas), HttpStatus.OK);
+        return new ResponseEntity<List<Persona>>(listaPersonas, HttpStatus.OK);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST,
@@ -47,7 +46,7 @@ public class PersonaController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Persona> agregarPersona(@RequestBody Persona persona){
         Persona personaGuardada = personaServices.agregarPersona(persona);
-        return new ResponseEntity<Persona>(persona, HttpStatus.OK);
+        return new ResponseEntity<Persona>(persona, HttpStatus.CREATED);
     }
 
 
@@ -59,9 +58,7 @@ public class PersonaController {
         return new ResponseEntity<Persona>(persona, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity borrarPersona(@PathVariable Long id){
         personaServices.eliminarPersona(id);
         return new ResponseEntity(HttpStatus.OK);

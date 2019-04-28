@@ -76,7 +76,6 @@ public class Persona {
         return perApellido;
     }
 
-    @JsonProperty("perApellido")
     public void setPerApellido(String perApellido) {
         this.perApellido = perApellido;
     }

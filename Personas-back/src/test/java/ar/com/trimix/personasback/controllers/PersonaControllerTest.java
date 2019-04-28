@@ -1,7 +1,6 @@
 package ar.com.trimix.personasback.controllers;
 
 import ar.com.trimix.personasback.entities.Persona;
-import ar.com.trimix.personasback.entities.Personas;
 import ar.com.trimix.personasback.entities.TipoDocumento;
 import ar.com.trimix.personasback.repositories.PersonaRepository;
 import ar.com.trimix.personasback.services.PersonaServices;
@@ -17,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -55,19 +55,19 @@ public class PersonaControllerTest {
     @Test
     public void obtenerPersonas() {
 
-        ResponseEntity<Personas> personas = personaController.
+        ResponseEntity<List<Persona>> personas = personaController.
                 obtenerPersonas(0,10, null, null);
         assertEquals(HttpStatus.OK, personas.getStatusCode());
-        assertEquals(alvaro.getPerNombre(), personas.getBody().getPersonas().get(0).getPerNombre());
+        assertEquals(alvaro.getPerNombre(), personas.getBody().get(0).getPerNombre());
     }
 
     @Test
     public void obtenerPersonasInexistentes() {
 
-        ResponseEntity<Personas> personas = personaController.
+        ResponseEntity<List<Persona>> personas = personaController.
                 obtenerPersonas(0,10, "pepe", null);
         assertEquals(HttpStatus.OK, personas.getStatusCode());
-        assertEquals(0, personas.getBody().getPersonas().size());
+        assertEquals(0, personas.getBody().size());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class PersonaControllerTest {
                 TipoDocumento.PASAPORTE);
 
         ResponseEntity<Persona> personaResponseEntity = personaController.agregarPersona(pepe);
-        assertEquals(HttpStatus.OK, personaResponseEntity.getStatusCode());
+        assertEquals(HttpStatus.CREATED, personaResponseEntity.getStatusCode());
         assertNotNull(personaResponseEntity.getBody().getPerId());
     }
 

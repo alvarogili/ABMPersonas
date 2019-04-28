@@ -110,6 +110,7 @@
 
 
     <build>
+        <finalName>personas</finalName>
         <plugins>
 
             <plugin>

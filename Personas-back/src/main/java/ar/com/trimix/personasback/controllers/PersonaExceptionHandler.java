@@ -3,6 +3,7 @@ package ar.com.trimix.personasback.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
  * Controlador de excepciones
@@ -10,10 +11,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
  * Date: 27/04/19
  */
 @ControllerAdvice
-public class ExceptionHandler {
+public class PersonaExceptionHandler {
 
-    @org.springframework.web.bind.annotation.ExceptionHandler({IllegalArgumentException.class})
-    public ResponseEntity<Error> handleBadRequest(RuntimeException ex) {
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Error> handleBadRequest(IllegalArgumentException ex) {
         Error error = new Error();
         final String message = ex.getMessage();
         error.setMessage(message);
