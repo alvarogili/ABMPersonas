@@ -63,3 +63,12 @@ En este caso la aplicación se publica en http://localhost:8081/personas/
 ## Archivo  ABMPersonas.postman_collection.json
 
 Este archivo es un export de una colección de Postman(https://www.getpostman.com/), que permite ejecutar las acciones requeridas sobre la API.
+
+## Dependencias
+
+Listado de frameworks y librerías necesarias para compilar y correr el proyecto:
+
+* Java 8+
+* Angular 7
+* npm 6.8.0
+* node 8.9.4
