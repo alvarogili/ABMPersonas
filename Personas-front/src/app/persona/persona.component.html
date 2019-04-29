@@ -1,0 +1,23 @@
+<form #myform="ngForm" [formGroup]="personaForm" (ngSubmit)="submit()">
+    Nombre:<br>
+    <input type="text" name="perNombre" formControlName="perNombre"><br>
+    <br>
+    Apellido:<br>
+    <input type="text" name="perApellido" formControlName="perApellido"><br>
+    <br>
+    Fecha de nacimiento:<br>
+    <input type="date" name="perFechaNacimiento" formControlName="perFechaNacimiento"><br>
+    <br>
+    Tipo de documento:<br>
+    <select name="perTipoDocumento" formControlName="perTipoDocumento">
+      <option value="DNI">DNI</option>
+      <option value="PASAPORTE">PASAPORTE</option>
+      <option value="CEDULA">CEDULA</option>    
+    </select><br>
+    <br>
+    Número de documento:<br>
+    <input type="text" name="perNumeroDocumento" formControlName="perNumeroDocumento"><br>
+    <br>
+    <input type="submit" value="Submit" value="Guardar">
+    <input type="button" (click)="back()" value="Volver">
+</form>

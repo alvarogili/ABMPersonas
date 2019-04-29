@@ -36,6 +36,8 @@ mvn clean install
 cp Personas-back/target/personas.war /var/lib/tomcat8/webapps
 ```
 
+Luego de esto se podrá acceder a la aplicación en http://localhost:8080/personas/
+
 ## Utilizar imagen docker
 
 Generar imagen por unica vez:
@@ -55,7 +57,8 @@ o
 ```sh
 docker run -d -p 8081:8080 personas
 ```
-La diferencia entre el primero y el segundo es que, el primero ejcuta el contenedor y queda bloqueado logueando las acciones de tomcat, cuando se ejecuta `Ctrl+C` el contenedor se detiene y el segundo, ejeucta el contenedor en moo desatendido
+La diferencia entre el primero y el segundo es que, el primero ejcuta el contenedor y queda bloqueado logueando las acciones de tomcat, cuando se ejecuta `Ctrl+C` el contenedor se detiene y el segundo, ejeucta el contenedor en moo desatendido.
+En este caso la aplicación se publica en http://localhost:8081/personas/
 
 ## Archivo  ABMPersonas.postman_collection.json
 

@@ -1,1 +1,45 @@
-<ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+<!--<div>
+    <form #myform="ngForm" [formGroup]="filtroForm" (ngSubmit)="submit()">
+        Filtrar por nombre: <input type="text" name="perNombre" formControlName="perNombre">        
+        Filtrar por tipo de documento:
+            <select name="perTipoDocumento" formControlName="perTipoDocumento">
+            <option value="DNI">DNI</option>
+            <option value="PASAPORTE">PASAPORTE</option>
+            <option value="CEDULA">CEDULA</option>    
+            </select>
+            <input type="submit" value="Submit" value="Filtrar">        
+    </form>
+</div>-->
+
+<button id="add-person" type="button" routerLink="/nuevapersona">Nueva persona</button> 
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="column1">Id</th>
+                <th class="column2">Nombre</th>
+                <th class="column3">Apellido</th>
+                <th class="column4">Fecha Nacimiento</th>
+                <th class="column5">Numero de Documento</th>
+                <th class="column6">Tipo Documento</th>                            
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let persona of dataSource">
+                <th scope="row">{{persona.perId}}</th>
+                <td>{{persona.perNombre}}</td>
+                <td>{{persona.perApellido}}</td>
+                <td>{{persona.perNumeroDocumento}}</td>
+                <td>{{persona.perTipoDocumento}}</td>
+                <td>{{persona.perFechaNacimiento}}</td>
+                <td>
+                <button id="edit-person" type="button" (click)="redirect(persona)">Editar</button>
+                <button id="delete-person" type="button"
+                    (click)="openModal(persona)"
+                >Eliminar</button>
+                </td>
+            </tr>
+		</tbody>
+	</table>
+</div>
+  

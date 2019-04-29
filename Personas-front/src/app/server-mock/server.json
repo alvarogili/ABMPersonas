@@ -1,0 +1,45 @@
+{
+    "personas":[
+        {
+            "perId": 24,
+            "perApellido": "Argento",
+            "perFechaNacimiento": "27/04/1975",
+            "perNombre": "Pepe",
+            "perNumeroDocumento": 15321012,
+            "perTipoDocumento": "PASAPORTE"
+        },
+        {
+            "perId": 25,
+            "perApellido": "Gili",
+            "perFechaNacimiento": "07/08/1984",
+            "perNombre": "alVarO",
+            "perNumeroDocumento": 29494566,
+            "perTipoDocumento": "DNI"
+        },
+        {
+            "perId": 26,
+            "perApellido": "Argento",
+            "perFechaNacimiento": "27/04/1985",
+            "perNombre": "Pepe",
+            "perNumeroDocumento": 15321012,
+            "perTipoDocumento": "DNI"
+        },
+        {
+            "perId": 27,
+            "perApellido": "Argenti",
+            "perFechaNacimiento": "27/04/1975",
+            "perNombre": "Pepe",
+            "perNumeroDocumento": 15321012,
+            "perTipoDocumento": "PASAPORTE"
+        },
+        {
+            "perId": 23,
+            "perApellido": "Gili",
+            "perFechaNacimiento": "07/08/1982",
+            "perNombre": "Alvaro",
+            "perNumeroDocumento": 29494566,
+            "perTipoDocumento": "DNI"
+        }
+
+    ]
+}

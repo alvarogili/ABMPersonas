@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
-import { HttpClientModule } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RestApiService } from '../shared/rest-api.service';
+import { Filtro } from '../Filtro';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BorrarPersonaComponent } from '../persona/borrarpersona.component';
 import { Persona } from '../Persona';
-import 'rxjs/operators/map';
 
 @Component({
   selector: 'app-tabla',
@@ -12,48 +12,34 @@ import 'rxjs/operators/map';
 })
 export class TablaComponent implements OnInit {
 
-  settings = {
-    columns: {
-      perId: {
-        title: 'Id',
-        editable: false,
-        addable: false,
-      },
-      perNombre: {
-        title: 'Nombre'
-      },
-      perApellido: {
-        title: 'Apellido'
-      },
-      perFechaNacimiento: {
-        title: 'Fecha de nacimiento'
-      },
-      perTipoDocumento: {
-        title: 'Tipo de documento'
-      },
-      perNumeroDocumento: {
-        title: 'Número de documento'
-      }
-    }
-  };
 
-  source: any;
+  dataSource: any;
 
-  constructor(protected restApi: RestApiService) {
-    this.source = new LocalDataSource();
+  constructor(protected restApi: RestApiService, private ngbModal: NgbModal) {
 
     this.loadAll();
 }
 
 
   ngOnInit() {
+    this.restApi.accion.subscribe(x => {
+      if (x === 'borrado') {
+        this.loadAll();
+      }
+    });
     this.loadAll();
   }
 
   loadAll() {
-    this.source = this.restApi.getPersonas().subscribe((data) => {
-      this.source = data;
+    this.restApi.getPersonas(new Filtro('', '')).subscribe((data) => {
+      this.dataSource = data;
     });
+  }
+
+  openModal(persona: Persona) {
+    const modal = this.ngbModal.open(BorrarPersonaComponent);
+    modal.componentInstance.persona = persona;
+    this.loadAll();
   }
 
 }

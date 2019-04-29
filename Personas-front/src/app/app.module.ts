@@ -7,20 +7,28 @@ import { TablaComponent } from './tabla/tabla.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { HttpClientModule } from '@angular/common/http';
 import { RestApiService } from './shared/rest-api.service';
-
-
-
+import { PersonaComponent } from './persona/persona.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BorrarPersonaComponent } from './persona/borrarpersona.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TablaComponent
+    TablaComponent,
+    PersonaComponent,
+    BorrarPersonaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     Ng2SmartTableModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgbModule.forRoot(),
+  ],
+  entryComponents: [
+    BorrarPersonaComponent
   ],
   providers: [RestApiService],
   bootstrap: [AppComponent]
