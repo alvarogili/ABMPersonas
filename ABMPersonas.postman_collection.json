@@ -15,7 +15,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"dni\":\"1\",\"name\":\"John\",\"surname\":\"Nash\",\"age\":40}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://192.168.7.214:8080/personas/api",
@@ -141,7 +141,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"dni\":\"1\",\"name\":\"John\",\"surname\":\"Nash\",\"age\":40}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://192.168.7.214:8080/personas/api?numPag=1&tamPag=1",
@@ -181,7 +181,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"dni\":\"1\",\"name\":\"John\",\"surname\":\"Nash\",\"age\":40}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://192.168.7.214:8080/personas/api?perNombre=alvaro",
@@ -217,7 +217,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"dni\":\"1\",\"name\":\"John\",\"surname\":\"Nash\",\"age\":40}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://192.168.7.214:8080/personas/api?perTipoDocumento=dni",
