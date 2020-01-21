@@ -21,7 +21,7 @@
         <hibernate.version>5.1.1.Final</hibernate.version>
         <spring-data.version>2.1.6.RELEASE</spring-data.version>
         <jackson.version>2.9.8</jackson.version>
-        <springframework.version>5.1.2.RELEASE</springframework.version>
+        <springframework.version>5.2.3.RELEASE</springframework.version>
     </properties>
     <dependencies>
         <dependency>
